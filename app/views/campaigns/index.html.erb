@@ -1,0 +1,69 @@
+<div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">Active Campaigns (<%= @campaigns.count %>)</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="<%= authenticated_root_path %>"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item">
+                    <%= link_to 'Entities', entities_path %>
+                  </li>
+
+                  <li class="breadcrumb-item">
+                    <%= link_to @entity.name, entity_path(@entity) %>
+                  </li>
+
+                  <li class="breadcrumb-item active" aria-current="page">Campaigns</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid pb-5 text-gray">
+  <div class="row mt-5">
+    <div class="col-xl-8">
+      <div class="card">
+        <div class="card-header border-0">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"> Campaigns </h3>
+            </div>
+
+            <div class="col text-right">
+              <%= link_to 'New', new_entity_campaign_path(@entity), class: 'btn btn-sm btn-primary' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table align-items-center table-flash">
+            <thead class="thead-light">
+              <tr>
+                <th>#</th>
+                <th scope="col">Title</th>
+                <th scope="col">List count</th>
+                <th scope="col">No. of Checks</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @campaigns.each_with_index do |campaign, index| %>
+                <tr>
+                  <td> <%= index + 1 %> </td>
+                  <td> <%= link_to campaign.name.titleize, entity_campaign_path(@entity, campaign) %> </td>
+                  <td> <%= rand(0..500) %> </td>
+                  <td> <%= campaign.check_level.humanize.titleize %> </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

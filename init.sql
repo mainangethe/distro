@@ -1,0 +1,1 @@
+CREATE USER distro SUPERUSER;

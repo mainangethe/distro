@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Distro</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Mradi Kenya Limited">
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <%= render '/layouts/global/sidebar' %>
+    <% end %>
+
+
+    <% if notice %>
+      <p class="alert alert-default system-alert"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert alert-danger system-alert"><%= alert %></p>
+    <% end %>
+
+
+    <div id="panel" class="main-content">
+      <% if user_signed_in? %>
+        <%= render '/layouts/global/topnav' %>
+      <% end %>
+
+      <%= yield %>
+
+      <% if user_signed_in? %>
+        <%= render 'layouts/global/dashboard_footer' %>
+      <% else %>
+        <%= render '/layouts/global/footer/' %>
+      <% end %>
+    </div>
+  </body>
+</html>

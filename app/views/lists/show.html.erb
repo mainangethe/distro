@@ -1,0 +1,103 @@
+<div class="header bg-primary pb-6">
+      <div class="container-fluid">
+        <div class="header-body">
+          <div class="row align-items-center">
+            <div class="col-lg-6 col-7">
+              <h6 class="h2 text-white d-inline-block mb-0">View List</h6>
+              <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                  <li class="breadcrumb-item"><a href="<%= authenticated_root_path %>"><i class="fas fa-home"></i></a></li>
+                  <li class="breadcrumb-item">
+                    <%= link_to 'Entities', entities_path %>
+                  </li>
+
+                  <li class="breadcrumb-item">
+                    <%= link_to @entity.name, entity_path(@entity) %>
+                  </li>
+
+                  <li class="breadcrumb-item">
+                    <%= link_to 'Campaigns', entity_campaigns_path(@entity) %>
+                  </li>
+
+                  <li class="breadcrumb-item">
+                    <%= link_to @campaign.name, entity_campaign_path(@entity, @campaign) %>
+                  </li>
+
+                  <li class="breadcrumb-item active" aria-current="page"><%= @list.name %> </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-xl-4">
+      <div class="card">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0"><%= @list.name.humanize.titleize %>  </h3>
+            </div>
+
+            <div class="col text-right">
+              <%= link_to "Add #{@list.list_type.humanize.titleize}", '', class: 'btn btn-sm btn-primary' %>
+            </div>
+          </div>
+
+          <div class="card-body pt-0">
+            <div class="row">
+              <div class="col">
+                <div class="card-profile-stats d-flex justify-content-center">
+                  <div>
+                    <span class="heading"> <%= rand(0..100) %> </span>
+                    <span class="description"> Distribution List </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class='text-center'>
+              <div class="h5">
+                <i class="ni location_pin mr-2"></i>
+                <%= @campaign.check_level.humanize.titleize %>
+              </div>
+
+              <div class="h5 mt-4">
+                <i class="ni business_briefcase-24 mr-2"></i>
+                <%= @campaign.campaign_type.humanize.titleize %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xl-5">
+      <div class="card">
+        <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+          <div class="row align-items-center">
+            <div class="col">
+              <h3 class="mb-0">Total Listed ()</h3>
+            </div>
+          </div>
+        </div>
+
+          <div class="table-responsive">
+            <table class="table align-items-center table-flash">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col"> Name | Gender</th>
+                  <th scope="col"> Identification Number | Type </th>
+                  <th scope="col"> Phone Number / Email </th>
+                </tr>
+              </thead>
+
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

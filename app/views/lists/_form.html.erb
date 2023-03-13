@@ -1,0 +1,30 @@
+<%= form_for [@entity, @campaign, @list]  do |form| %>
+          <%= render 'devise/shared/error_messages', resource: @list %>
+
+          <div class="form-group mb-3">
+              <%= form.label :name, 'Title of your List' %>
+              <%= form.text_field :name, autofocus: true, placeholder: 'Ex. Day 1 - Users', class: 'form-control pl-2' %>
+          </div>
+
+          <div class="form-group mb-3">
+            <%= form.label :list_type, 'Type of Recipients' %>
+            <%= form.collection_select :list_type,
+              List.list_types.map { |type| [type.first.humanize.titleize, type.first] }, :second, :first, {selected: @list.list_type}, { class: 'form-control' } %>
+          </div>
+
+
+          <% if action_name == 'edit' %>
+            <div class="form-group mb-3">
+              <%= form.label :status %>
+              <%= form.collection_select :status,
+                List.statuses.map { |status| [status.first.humanize.titleize, status.first] },
+                 :second, :first, { selected: @list.status }, { class: 'form-control' }
+              %>
+            </div>
+          <% end %>
+
+          <div class="text-center actions">
+            <%= form.submit class: 'btn btn-primary my-4' %>
+          </div>
+        <% end %>
+
